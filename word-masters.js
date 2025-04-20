@@ -9,7 +9,7 @@ async function init() {
     let currentRow = 0;
     let isLoading = true;
 
-    const res = await fetch("https://words.dev-apis.com/word-of-the-day");
+    const res = await fetch("https://words.dev-apis.com/word-of-the-day?random=1");
     const resObj = await res.json();
     const word = resObj.word.toUpperCase();
     const wordParts = word.split("");
@@ -17,7 +17,7 @@ async function init() {
     setLoading (false);
     isLoading = false;
 
-    console.log(word);
+    // console.log(word);
 
     function addLetter (letter) {
         // add letter to the end
@@ -56,7 +56,7 @@ async function init() {
 
         const guessParts = currentGuess.split("");
         const map = makeMap(wordParts);
-        console.log(map);
+        // console.log(map);
         
 
         for (let i = 0; i < ANSWER_LENGTH; i++) {
@@ -89,6 +89,7 @@ async function init() {
         if (currentGuess === word) {
             // win
             alert("You win!");
+            document.querySelector(".brand").classList.add("winner");
             done = true;
             return;
         }
